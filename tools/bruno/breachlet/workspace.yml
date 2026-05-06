@@ -1,0 +1,12 @@
+opencollection: 1.0.0
+info:
+  name: "breachlet"
+  type: workspace
+
+collections:
+  - name: "Core"
+    path: "collections/core"
+
+specs:
+
+docs: ''

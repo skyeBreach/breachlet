@@ -1,0 +1,49 @@
+services:
+  postgres:
+    container_name: breachlet-db
+    build: ./infra/postgres
+    command: ["postgres", "-c", "config_file=/etc/postgresql/postgresql.conf"]
+    volumes:
+      - postgresql_data:/var/lib/postgresql
+      - ./infra/postgres/postgresql.conf:/etc/postgresql/postgresql.conf
+    env_file:
+      - .env
+    environment:
+      POSTGRES_DB: ${DATABASE_DB}
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+    ports:
+      - "5432:5432"
+    networks:
+      - postgres_network
+
+  pgadmin:
+    container_name: breachlet-pgadmin
+    image: dpage/pgadmin4:latest
+    volumes:
+      - pgadmin_working_dir:/var/lib/pgadmin
+      - pgadmin_config_dir:/pgadmin4
+    env_file:
+      - .env
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+    depends_on:
+      - postgres
+    ports:
+      - "5433:80"
+    networks:
+      - breachlet_network
+
+volumes:
+  postgresql_data:
+    driver: local
+  pgadmin_working_dir:
+    driver: local
+  pgadmin_config_dir:
+    driver: local
+
+networks:
+  breachlet_network:
+    driver: bridge

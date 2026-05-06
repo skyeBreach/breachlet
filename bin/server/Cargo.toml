@@ -1,0 +1,26 @@
+[package]
+name = "breachlet-bin-server"
+version.workspace = true
+edition.workspace = true
+
+[[bin]]
+name = "breachlet-server"
+path = "src/main.rs"
+
+[dependencies]
+# Internal Crates
+breachlet-svc-infrastructure = { workspace = true }
+
+anyhow = { workspace = true }
+axum = { workspace = true, features = ["macros"] }
+chrono = { workspace = true, features = ["serde"] }
+
+thiserror = { workspace = true }
+tokio = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true, features = [
+    "chrono",
+    "env-filter",
+    "json",
+] }
+uuid = { workspace = true, features = ["v4"] }
