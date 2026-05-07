@@ -176,6 +176,21 @@ name = "breachlet-svc-api"
 version = "0.1.0"
 
 [[package]]
+name = "breachlet-svc-core"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "axum",
+ "dotenvy",
+ "garde",
+ "serde",
+ "serde_json",
+ "thiserror",
+ "tracing",
+ "tracing-subscriber",
+]
+
+[[package]]
 name = "breachlet-svc-infra"
 version = "0.1.0"
 dependencies = [

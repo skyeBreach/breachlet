@@ -42,4 +42,5 @@ uuid = "1.23.1"
 
 # Internal Crates
 breachlet-svc-api = { path = "./services/api" }
+breachlet-svc-core = { path = "./services/core" }
 breachlet-svc-infra = { path = "./services/infra" }
