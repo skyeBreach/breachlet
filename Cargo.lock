@@ -172,6 +172,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "breachlet-svc-api"
+version = "0.1.0"
+
+[[package]]
 name = "breachlet-svc-infrastructure"
 version = "0.1.0"
 dependencies = [
