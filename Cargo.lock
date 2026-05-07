@@ -162,7 +162,7 @@ version = "0.1.0"
 dependencies = [
  "anyhow",
  "axum",
- "breachlet-svc-infrastructure",
+ "breachlet-svc-infra",
  "chrono",
  "thiserror",
  "tokio",
@@ -176,7 +176,7 @@ name = "breachlet-svc-api"
 version = "0.1.0"
 
 [[package]]
-name = "breachlet-svc-infrastructure"
+name = "breachlet-svc-infra"
 version = "0.1.0"
 dependencies = [
  "anyhow",

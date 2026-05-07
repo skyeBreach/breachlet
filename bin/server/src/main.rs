@@ -1,4 +1,4 @@
-use breachlet_svc_infrastructure::tracing::configure_tracing;
+use breachlet_svc_infra::tracing::configure_tracing;
 use tracing::info;
 
 #[tokio::main]

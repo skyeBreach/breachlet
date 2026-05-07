@@ -41,4 +41,5 @@ chrono = "0.4.44"
 uuid = "1.23.1"
 
 # Internal Crates
-breachlet-svc-infrastructure = { path = "./services/infrastructure" }
+breachlet-svc-api = { path = "./services/api" }
+breachlet-svc-infra = { path = "./services/infra" }
