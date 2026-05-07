@@ -1,0 +1,11 @@
+[package]
+name = "breachlet-svc-api"
+version.workspace = true
+authors.workspace = true
+description.workspace = true
+edition.workspace = true
+license-file.workspace = true
+readme.workspace = true
+keywords.workspace = true
+
+[dependencies]
