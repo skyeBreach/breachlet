@@ -4,9 +4,11 @@ use axum::{
     response::{IntoResponse, Response},
 };
 
-use config::Config;
 use serde_json::json;
 use thiserror::Error;
+
+// ================================================================================================================== //
+// Definition
 
 #[derive(Error, Debug)]
 pub enum AppError {
@@ -17,6 +19,9 @@ pub enum AppError {
     #[error("Internal Server Error: {0}")]
     Internal(#[from] anyhow::Error),
 }
+
+// ================================================================================================================== //
+// HTTP Response
 
 impl IntoResponse for AppError {
     fn into_response(self) -> Response {
@@ -38,6 +43,7 @@ impl IntoResponse for AppError {
             }
         };
 
+        // Construct json response body from error details
         let body = Json(json!({
             "success": false,
             "error": {
@@ -46,8 +52,14 @@ impl IntoResponse for AppError {
             }
         }));
 
+        // Convert the response body into full response
         (status, body).into_response()
     }
 }
 
+// ================================================================================================================== //
+//
+
 pub type AppResult<T> = Result<T, AppError>;
+
+// ================================================================================================================== //
