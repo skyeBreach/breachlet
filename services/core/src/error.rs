@@ -58,7 +58,7 @@ impl IntoResponse for AppError {
 }
 
 // ================================================================================================================== //
-//
+// App Result
 
 pub type AppResult<T> = Result<T, AppError>;
 
