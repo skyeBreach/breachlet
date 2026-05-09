@@ -4,13 +4,16 @@ use axum::{
     response::{IntoResponse, Response},
 };
 
+use config::Config;
 use serde_json::json;
 use thiserror::Error;
 
 #[derive(Error, Debug)]
 pub enum AppError {
-    #[error("Body Failed: {0}")]
+    #[error("Body Failed To Validate: {0}")]
     Validation(#[from] garde::Report),
+    #[error("Config Parse Error: {0}")]
+    Config(#[from] config::ConfigError),
     #[error("Internal Server Error: {0}")]
     Internal(#[from] anyhow::Error),
 }
@@ -20,6 +23,11 @@ impl IntoResponse for AppError {
         // Build the error response details based on its type
         let (status, code, message) = match &self {
             Self::Validation(inner) => (StatusCode::BAD_REQUEST, "VALIDATION_FAILURE", inner.to_string()),
+            Self::Config(inner) => (
+                StatusCode::INTERNAL_SERVER_ERROR,
+                "CONFIG_FAILED_TO_PARSE",
+                inner.to_string(),
+            ),
             Self::Internal(inner) => {
                 tracing::error!("Stacktrace: {}", inner.backtrace());
                 (
