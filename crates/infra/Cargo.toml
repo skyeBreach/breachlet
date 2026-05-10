@@ -6,6 +6,7 @@ edition = "2024"
 [dependencies]
 anyhow.workspace = true
 axum = { workspace = true, features = ["macros"] }
+config = "0.15.22"
 dotenvy = "0.15.7"
 garde = { version = "0.22.1", features = ["full", "pattern"] }
 serde = { workspace = true, features = ["derive"] }
