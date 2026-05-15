@@ -1,10 +1,10 @@
 [package]
-name = "breachlet-svc-infra"
+name = "breachlet-infra"
 version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-anyhow.workspace = true
+anyhow = { workspace = true }
 axum = { workspace = true, features = ["macros"] }
 config = "0.15.22"
 dotenvy = "0.15.7"
@@ -18,7 +18,7 @@ sqlx = { workspace = true, features = [
     "derive",
     "uuid",
 ] }
-thiserror.workspace = true
+thiserror = { workspace = true }
 tokio = { workspace = true, features = ["full"] }
 tracing = { workspace = true, features = ["log"] }
 tracing-subscriber = { workspace = true, features = ["env-filter"] }
