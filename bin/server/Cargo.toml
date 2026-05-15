@@ -1,7 +1,12 @@
 [package]
 name = "breachlet-server"
 version.workspace = true
+authors.workspace = true
+description.workspace = true
 edition.workspace = true
+license-file.workspace = true
+readme.workspace = true
+keywords.workspace = true
 
 [[bin]]
 name = "breachlet-server"
