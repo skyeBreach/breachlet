@@ -1,5 +1,5 @@
 [package]
-name = "breachlet-svc-core"
+name = "breachlet-domain"
 version.workspace = true
 authors.workspace = true
 description.workspace = true
