@@ -1,6 +1,6 @@
 [workspace]
 resolver = "3"
-members = ["services/*", "bin/*"]
+members = ["crates/*", "bin/*"]
 
 [workspace.package]
 version = "0.1.0"
@@ -41,6 +41,6 @@ chrono = "0.4.44"
 uuid = "1.23.1"
 
 # Internal Crates
-breachlet-svc-api = { path = "./services/api" }
-breachlet-svc-core = { path = "./services/core" }
-breachlet-svc-infra = { path = "./services/infra" }
+breachlet-app = { path = "./crates/app" }
+breachlet-core = { path = "./crates/core" }
+breachlet-infra = { path = "./crates/infra" }
