@@ -19,6 +19,11 @@ async fn main() -> AppResult<()> {
     let app_state = AppState::init(config.database).await?;
     info!("App State successfully initialised");
 
+    // Run database migrations on startup
+    info!("Starting database migrations...");
+    sqlx::migrate!("../../../migrations").run(&app_state.db_pool).await?;
+    info!("Successfully completed database migrations");
+
     // Build the app router with a persistent app state
     let app = router::build_app_router(app_state).await?;
     info!("Successfully built app router");

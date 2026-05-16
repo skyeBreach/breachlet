@@ -26,3 +26,4 @@ tracing-subscriber = { workspace = true, features = [
     "json",
 ] }
 uuid = { workspace = true, features = ["v4"] }
+sqlx.workspace = true
