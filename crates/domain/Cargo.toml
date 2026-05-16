@@ -9,3 +9,7 @@ readme.workspace = true
 keywords.workspace = true
 
 [dependencies]
+breachlet-core.workspace = true
+chrono = { workspace = true, features = ["serde"] }
+serde = { workspace = true, features = ["derive"] }
+uuid = { workspace = true, features = ["v4"] }

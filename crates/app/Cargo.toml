@@ -11,5 +11,8 @@ keywords.workspace = true
 [dependencies]
 axum.workspace = true
 breachlet-core.workspace = true
+breachlet-domain = { version = "0.1.0", path = "../domain" }
+breachlet-infra.workspace = true
+garde = { version = "0.22.1", features = ["full"] }
 serde = { workspace = true, features = ["derive"] }
 sqlx = { workspace = true, features = ["postgres"] }

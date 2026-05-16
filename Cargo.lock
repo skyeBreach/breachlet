@@ -179,6 +179,9 @@ version = "0.1.0"
 dependencies = [
  "axum",
  "breachlet-core",
+ "breachlet-domain",
+ "breachlet-infra",
+ "garde",
  "serde",
  "sqlx",
 ]
@@ -203,6 +206,12 @@ dependencies = [
 [[package]]
 name = "breachlet-domain"
 version = "0.1.0"
+dependencies = [
+ "breachlet-core",
+ "chrono",
+ "serde",
+ "uuid",
+]
 
 [[package]]
 name = "breachlet-frontend"
@@ -214,6 +223,8 @@ version = "0.1.0"
 dependencies = [
  "anyhow",
  "axum",
+ "breachlet-core",
+ "breachlet-domain",
  "config",
  "dotenvy",
  "garde",

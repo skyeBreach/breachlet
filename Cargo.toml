@@ -21,7 +21,6 @@ keywords = ["breachlet"]
 [workspace.dependencies]
 # Web Server Framework
 axum = "0.8.9"
-tower = "0.5.3"
 
 # Axync Runtime
 tokio = "1.52.2"
