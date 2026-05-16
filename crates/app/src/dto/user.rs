@@ -1,9 +1,13 @@
-use breachlet_domain::user::entity::User;
+use breachlet_core::error::{AppError, AppResult};
+use breachlet_domain::{user::entity::User, value_object::email::Email};
+
 use serde::{Deserialize, Serialize};
 use sqlx::types::{
+    Uuid,
     chrono::{DateTime, Utc},
     uuid,
 };
+use std::str::FromStr;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserResponse {
@@ -26,5 +30,33 @@ impl From<User> for UserResponse {
             created_at: value.created_at,
             updated_at: value.updated_at,
         }
+    }
+}
+
+#[derive(Clone, Deserialize)]
+pub enum GetUserPath {
+    Id(Uuid),
+    Email(Email),
+}
+
+impl FromStr for GetUserPath {
+    type Err = AppError;
+
+    fn from_str(s: &str) -> AppResult<Self> {
+        if let Ok(uuid) = Uuid::parse_str(s) {
+            return Ok(Self::Id(uuid));
+        }
+
+        if let Ok(email) = Email::parse_str(s) {
+            return Ok(Self::Email(email));
+        }
+
+        let mut report = garde::Report::new();
+        report.append(
+            garde::Path::new("id"),
+            garde::Error::new("Must be a valid UUID or email address"),
+        );
+
+        Err(AppError::Validation(report))
     }
 }

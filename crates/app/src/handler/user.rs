@@ -1,4 +1,7 @@
-use crate::{dto::user::UserResponse, state::AppState};
+use crate::{
+    dto::user::{GetUserPath, UserResponse},
+    state::AppState,
+};
 use axum::{
     Json, Router,
     extract::{Path, State},
@@ -6,21 +9,24 @@ use axum::{
 };
 use breachlet_core::error::AppResult;
 use breachlet_domain::user::repo::UserRepository;
-use sqlx::types::Uuid;
 
 pub async fn get_user<U>(
     State(state): State<AppState<U>>,
-    Path(id): Path<Uuid>,
+    Path(id): Path<String>,
 ) -> AppResult<Json<UserResponse>>
 where
     U: UserRepository + Clone + 'static,
 {
-    // TODO: Query User
-    //
-    let user = state.user_service.get_user_by_id(id).await?;
+    // Parse path req as either Uuid or Email
+    let id: GetUserPath = id.parse()?;
 
-    // TODO: Map User into response DTO
-    //
+    // Query the user depending on the identifier type
+    let user = match id {
+        GetUserPath::Id(uuid) => state.user_service.get_user_by_id(uuid).await?,
+        GetUserPath::Email(email) => state.user_service.get_user_by_email(email).await?,
+    };
+
+    // Respond with the found user
     Ok(Json(user))
 }
 

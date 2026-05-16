@@ -1,4 +1,4 @@
-use axum::{Router, extract::State, routing::get};
+use axum::{Router, routing::get};
 use breachlet_core::error::AppResult;
 use breachlet_domain::user::repo::UserRepository;
 
@@ -21,5 +21,5 @@ fn api_routes<U>() -> Router<AppState<U>>
 where
     U: UserRepository + Clone + 'static,
 {
-    Router::new().nest("/users", build_user_handler::<U>())
+    Router::new().nest("/user", build_user_handler::<U>())
 }

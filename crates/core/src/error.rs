@@ -22,6 +22,7 @@ pub enum AppError {
     Database(#[from] sqlx::error::Error),
     #[error("Database Migration Error: {0}")]
     DatabaseMigration(#[from] sqlx::migrate::MigrateError),
+
     #[error("Internal Server Error: {0}")]
     Internal(#[from] anyhow::Error),
 }
