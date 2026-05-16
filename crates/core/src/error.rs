@@ -5,6 +5,7 @@ use axum::{
 };
 
 use serde_json::json;
+use sqlx::error::DatabaseError;
 use thiserror::Error;
 
 // ================================================================================================================== //
@@ -16,6 +17,8 @@ pub enum AppError {
     Validation(#[from] garde::Report),
     #[error("Config Parse Error: {0}")]
     Config(#[from] config::ConfigError),
+    #[error("Database Error: {0}")]
+    Database(#[from] sqlx::error::Error),
     #[error("Internal Server Error: {0}")]
     Internal(#[from] anyhow::Error),
 }
@@ -33,6 +36,14 @@ impl IntoResponse for AppError {
                 "CONFIG_FAILED_TO_PARSE",
                 inner.to_string(),
             ),
+            Self::Database(inner) => {
+                tracing::error!("Stacktrace: {}", inner.to_string());
+                (
+                    StatusCode::INTERNAL_SERVER_ERROR,
+                    "INTERNAL_ERROR",
+                    "Internal Server Error".to_string(),
+                )
+            }
             Self::Internal(inner) => {
                 tracing::error!("Stacktrace: {}", inner.backtrace());
                 (
