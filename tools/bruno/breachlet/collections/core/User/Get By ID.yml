@@ -1,0 +1,107 @@
+info:
+  name: Get By ID
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "{{base-url}}/api/user/:id"
+  params:
+    - name: id
+      value: skyebenson@hotmail.com
+      type: path
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: "Success: Email"
+    request:
+      url: "{{base-url}}/api/user/:id"
+      method: GET
+      params:
+        - name: id
+          value: skyebenson@hotmail.com
+          type: path
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: content-type
+          value: application/json
+        - name: content-length
+          value: "206"
+        - name: date
+          value: Sat, 16 May 2026 16:01:54 GMT
+      body:
+        type: json
+        data: |-
+          {
+            "id": "1abb9555-3c58-48c9-8838-e8496cd6cc49",
+            "username": "skyeBreach",
+            "email": "skyebenson@hotmail.com",
+            "last_login": null,
+            "created_at": "2026-05-16T14:35:04.558358Z",
+            "updated_at": "2026-05-16T14:35:04.558358Z"
+          }
+  - name: "Success: Unique Id"
+    request:
+      url: "{{base-url}}/api/user/:id"
+      method: GET
+      params:
+        - name: id
+          value: 1abb9555-3c58-48c9-8838-e8496cd6cc49
+          type: path
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: content-type
+          value: application/json
+        - name: content-length
+          value: "206"
+        - name: date
+          value: Sat, 16 May 2026 16:04:30 GMT
+      body:
+        type: json
+        data: |-
+          {
+            "id": "1abb9555-3c58-48c9-8838-e8496cd6cc49",
+            "username": "skyeBreach",
+            "email": "skyebenson@hotmail.com",
+            "last_login": null,
+            "created_at": "2026-05-16T14:35:04.558358Z",
+            "updated_at": "2026-05-16T14:35:04.558358Z"
+          }
+  - name: "Error: Bad Id"
+    request:
+      url: "{{base-url}}/api/user/:id"
+      method: GET
+      params:
+        - name: id
+          value: 1abb9555-3c58-48c9-8838
+          type: path
+    response:
+      status: 400
+      statusText: Bad Request
+      headers:
+        - name: content-type
+          value: application/json
+        - name: content-length
+          value: "111"
+        - name: date
+          value: Sat, 16 May 2026 16:05:15 GMT
+      body:
+        type: json
+        data: |-
+          {
+            "error": {
+              "code": "VALIDATION_FAILURE",
+              "message": "id: Must be a valid UUID or email address\n"
+            },
+            "success": false
+          }

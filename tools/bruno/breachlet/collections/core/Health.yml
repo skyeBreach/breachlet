@@ -5,7 +5,7 @@ info:
 
 http:
   method: GET
-  url: http://localhost:3000/health
+  url: "{{base-url}}/health"
   auth: inherit
 
 settings:
@@ -13,3 +13,26 @@ settings:
   timeout: 0
   followRedirects: true
   maxRedirects: 5
+
+examples:
+  - name: "Status: Healthy"
+    request:
+      url: "{{base-url}}/health"
+      method: GET
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: content-type
+          value: application/json
+        - name: content-length
+          value: "38"
+        - name: date
+          value: Sat, 16 May 2026 14:47:19 GMT
+      body:
+        type: json
+        data: |-
+          {
+            "status": "healthy",
+            "version": "0.1.0"
+          }
