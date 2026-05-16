@@ -13,6 +13,15 @@ pub struct ServerConfig {
 }
 
 // ================================================================================================================== //
+// Implementation
+
+impl ServerConfig {
+    pub fn address(&self) -> String {
+        format!("{}:{}", self.host, self.port)
+    }
+}
+
+// ================================================================================================================== //
 // Default Values
 
 fn default_host() -> String {
