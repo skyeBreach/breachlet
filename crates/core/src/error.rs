@@ -18,6 +18,8 @@ pub enum AppError {
     Config(#[from] config::ConfigError),
     #[error("Database Error: {0}")]
     Database(#[from] sqlx::error::Error),
+    #[error("Database Migration Error: {0}")]
+    DatabaseMigration(#[from] sqlx::migrate::MigrateError),
     #[error("Internal Server Error: {0}")]
     Internal(#[from] anyhow::Error),
 }
@@ -40,7 +42,15 @@ impl IntoResponse for AppError {
                 (
                     StatusCode::INTERNAL_SERVER_ERROR,
                     "INTERNAL_ERROR",
-                    "Internal Server Error".to_string(),
+                    "Database Error".to_string(),
+                )
+            }
+            Self::DatabaseMigration(inner) => {
+                tracing::error!("Stacktrace: {}", inner.to_string());
+                (
+                    StatusCode::INTERNAL_SERVER_ERROR,
+                    "INTERNAL_ERROR",
+                    "Database Migration Error".to_string(),
                 )
             }
             Self::Internal(inner) => {
