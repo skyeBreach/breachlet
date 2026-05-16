@@ -1,0 +1,28 @@
+[package]
+name = "breachlet-server"
+version.workspace = true
+authors.workspace = true
+description.workspace = true
+edition.workspace = true
+license-file.workspace = true
+readme.workspace = true
+keywords.workspace = true
+
+[dependencies]
+# Internal Crates
+breachlet-app = { workspace = true }
+breachlet-infra = { workspace = true }
+breachlet-core = { workspace = true }
+anyhow.workspace = true
+axum = { workspace = true, features = ["macros"] }
+chrono = { workspace = true, features = ["serde"] }
+
+thiserror = { workspace = true }
+tokio = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true, features = [
+    "chrono",
+    "env-filter",
+    "json",
+] }
+uuid = { workspace = true, features = ["v4"] }
