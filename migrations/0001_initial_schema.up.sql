@@ -1,6 +1,6 @@
 -- migrations/0001_initial_schema.up.sql
 -- ================================================================================================================== --
--- User Management
+-- Users
 
 CREATE TABLE users (
     -- User Identification
@@ -11,10 +11,6 @@ CREATE TABLE users (
                     NOT NULL
                     UNIQUE,
     email           VARCHAR(255)
-                    NOT NULL,
-
-    -- Authentication
-    password_hash   VARCHAR(255)
                     NOT NULL,
 
     -- Metadata
@@ -34,7 +30,47 @@ CREATE INDEX IF NOT EXISTS idx_users_created_at ON users(created_at);
 COMMENT ON TABLE users IS 'User Accounts';
 
 -- ================================================================================================================== --
--- Authentication
+-- User Authentication Methods
+
+CREATE TYPE auth_provider AS ENUM (
+    'password'
+);
+
+CREATE TABLE user_auth_methods (
+    -- Identification
+    id              UUID
+                    PRIMARY KEY
+                    DEFAULT gen_random_uuid(),
+    user_id         UUID
+                    NOT NULL
+                    REFERENCES users(id),
+
+    -- Method
+    auth_provider   auth_provider
+                    NOT NULL
+                    DEFAULT 'password',
+    credential      VARCHAR(255)
+                    NOT NULL,
+
+    -- Metadata
+    created_at      TIMESTAMPTZ
+                    NOT NULL
+                    DEFAULT CURRENT_TIMESTAMP,
+    updated_at      TIMESTAMPTZ
+                    NOT NULL
+                    DEFAULT CURRENT_TIMESTAMP,
+
+    -- Constraints
+    CONSTRAINT      uq_user_auth_methods_user_provider UNIQUE (user_id, auth_provider)
+);
+
+CREATE INDEX IF NOT EXISTS idx_user_auth_methods_user_id ON user_auth_methods(user_id);
+CREATE INDEX IF NOT EXISTS idx_user_auth_methods_auth_provider ON user_auth_methods(auth_provider);
+
+COMMENT ON TABLE user_auth_methods IS 'User Authentication Methods';
+
+-- ================================================================================================================== --
+-- Sessions
 
 CREATE TYPE user_session_status AS ENUM (
     'active',

@@ -4,13 +4,11 @@
 
 INSERT INTO users (
         username,
-        email,
-        password_hash
+        email
     )
 VALUES (
     'skyeBreach',
-    'skyebenson@hotmail.com',
-    '$2a$12$axkx88bXYQ8RqXUK.wgjoeybNMTsIFQIBO3PIe1CsAbTqrxkkdgwS'
+    'skyebenson@hotmail.com'
 );
 
 -- ================================================================================================================== --
