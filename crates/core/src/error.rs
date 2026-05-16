@@ -12,6 +12,8 @@ use thiserror::Error;
 
 #[derive(Error, Debug)]
 pub enum AppError {
+    #[error("{0}")]
+    NotFound(String),
     #[error("Body Failed To Validate: {0}")]
     Validation(#[from] garde::Report),
     #[error("Config Parse Error: {0}")]
@@ -31,6 +33,7 @@ impl IntoResponse for AppError {
     fn into_response(self) -> Response {
         // Build the error response details based on its type
         let (status, code, message) = match &self {
+            Self::NotFound(msg) => (StatusCode::NOT_FOUND, "NOT_FOUND", msg.to_string()),
             Self::Validation(inner) => (StatusCode::BAD_REQUEST, "VALIDATION_FAILURE", inner.to_string()),
             Self::Config(inner) => (
                 StatusCode::INTERNAL_SERVER_ERROR,
