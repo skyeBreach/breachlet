@@ -237,6 +237,7 @@ dependencies = [
  "breachlet-core",
  "breachlet-infra",
  "chrono",
+ "sqlx",
  "thiserror",
  "tokio",
  "tracing",
