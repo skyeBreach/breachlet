@@ -3,7 +3,6 @@ use serde::Deserialize;
 // =================================================================================================================/ //
 // Definition
 
-///
 #[derive(Debug, Deserialize, Clone)]
 pub struct ServerConfig {
     #[serde(default = "default_host")]
