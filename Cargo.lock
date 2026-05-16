@@ -177,11 +177,13 @@ dependencies = [
 name = "breachlet-app"
 version = "0.1.0"
 dependencies = [
+ "anyhow",
  "axum",
  "breachlet-core",
  "breachlet-domain",
  "breachlet-infra",
  "garde",
+ "regex",
  "serde",
  "sqlx",
 ]
@@ -207,9 +209,13 @@ dependencies = [
 name = "breachlet-domain"
 version = "0.1.0"
 dependencies = [
+ "anyhow",
+ "axum",
  "breachlet-core",
  "chrono",
+ "garde",
  "serde",
+ "tracing",
  "uuid",
 ]
 
