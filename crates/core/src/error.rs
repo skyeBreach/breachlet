@@ -5,7 +5,6 @@ use axum::{
 };
 
 use serde_json::json;
-use sqlx::error::DatabaseError;
 use thiserror::Error;
 
 // ================================================================================================================== //
