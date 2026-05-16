@@ -176,6 +176,12 @@ dependencies = [
 [[package]]
 name = "breachlet-app"
 version = "0.1.0"
+dependencies = [
+ "axum",
+ "breachlet-core",
+ "serde",
+ "sqlx",
+]
 
 [[package]]
 name = "breachlet-core"
@@ -188,10 +194,19 @@ dependencies = [
  "garde",
  "serde",
  "serde_json",
+ "sqlx",
  "thiserror",
  "tracing",
  "tracing-subscriber",
 ]
+
+[[package]]
+name = "breachlet-domain"
+version = "0.1.0"
+
+[[package]]
+name = "breachlet-frontend"
+version = "0.1.0"
 
 [[package]]
 name = "breachlet-infra"
@@ -218,6 +233,7 @@ version = "0.1.0"
 dependencies = [
  "anyhow",
  "axum",
+ "breachlet-app",
  "breachlet-core",
  "breachlet-infra",
  "chrono",

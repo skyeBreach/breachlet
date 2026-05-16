@@ -1,6 +1,13 @@
 [workspace]
-resolver = "3"
-members = ["crates/*", "bin/*"]
+resolver = "2"
+members = [
+    "crates/app",
+    "crates/core",
+    "crates/domain",
+    "crates/infra",
+    "crates/interface/server",
+    "crates/interface/frontend",
+]
 
 [workspace.package]
 version = "0.1.0"
