@@ -1,10 +1,7 @@
-use std::fmt::Display;
-
-use axum::Json;
 use breachlet_core::error::{AppError, AppResult};
-use garde::{Report, external::compact_str::ToCompactString, rules::email::parse_email};
+use garde::{Report, rules::email::parse_email};
 use serde::{Deserialize, Serialize};
-use tracing::info;
+use std::fmt::Display;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Email(String);
