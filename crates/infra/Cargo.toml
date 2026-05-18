@@ -10,6 +10,7 @@ keywords.workspace = true
 
 [dependencies]
 anyhow = { workspace = true }
+async-trait = "0.1.89"
 axum = { workspace = true, features = ["macros"] }
 breachlet-core.workspace = true
 breachlet-domain = { version = "0.1.0", path = "../domain" }

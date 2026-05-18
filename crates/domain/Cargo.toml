@@ -10,6 +10,7 @@ keywords.workspace = true
 
 [dependencies]
 anyhow.workspace = true
+async-trait = "0.1.89"
 axum.workspace = true
 breachlet-core.workspace = true
 chrono = { workspace = true, features = ["serde"] }

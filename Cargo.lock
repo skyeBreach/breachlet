@@ -210,6 +210,7 @@ name = "breachlet-domain"
 version = "0.1.0"
 dependencies = [
  "anyhow",
+ "async-trait",
  "axum",
  "breachlet-core",
  "chrono",
@@ -228,6 +229,7 @@ name = "breachlet-infra"
 version = "0.1.0"
 dependencies = [
  "anyhow",
+ "async-trait",
  "axum",
  "breachlet-core",
  "breachlet-domain",
