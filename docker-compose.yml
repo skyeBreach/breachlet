@@ -15,7 +15,7 @@ services:
     ports:
       - "5432:5432"
     networks:
-      - postgres_network
+      - breachlet_network
 
   pgadmin:
     container_name: breachlet-pgadmin
