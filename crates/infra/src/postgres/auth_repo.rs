@@ -1,3 +1,4 @@
+use async_trait::async_trait;
 use breachlet_core::error::AppResult;
 use breachlet_domain::auth::{entity::UserAuthMethod, repo::AuthRepository};
 use sqlx::PgPool;
@@ -9,8 +10,9 @@ pub struct PgAuthRepository {
     pool: PgPool,
 }
 
+#[async_trait]
 impl AuthRepository for PgAuthRepository {
-    async fn get_user_auth_method_by_id(
+    async fn find_user_auth_method_by_id(
         &self,
         id: uuid::Uuid,
     ) -> AppResult<Option<UserAuthMethod>> {

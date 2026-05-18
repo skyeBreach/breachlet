@@ -1,9 +1,7 @@
-use std::result;
-
+use async_trait::async_trait;
 use breachlet_core::error::AppResult;
 use breachlet_domain::user::{entity::User, repo::UserRepository};
 use sqlx::PgPool;
-use tracing::info;
 
 use crate::models::user_model::UserModel;
 
@@ -18,6 +16,7 @@ impl PgUserRepository {
     }
 }
 
+#[async_trait]
 impl UserRepository for PgUserRepository {
     async fn find_by_id(
         &self,
