@@ -8,15 +8,11 @@ use axum::{
     routing::get,
 };
 use breachlet_core::error::AppResult;
-use breachlet_domain::user::repo::UserRepository;
 
-pub async fn get_user<U>(
-    State(state): State<AppState<U>>,
+pub async fn get_user(
+    State(state): State<AppState>,
     Path(id): Path<String>,
-) -> AppResult<Json<UserResponse>>
-where
-    U: UserRepository + Clone + 'static,
-{
+) -> AppResult<Json<UserResponse>> {
     // Parse path req as either Uuid or Email
     let id: GetUserPath = id.parse()?;
 
@@ -30,9 +26,6 @@ where
     Ok(Json(user))
 }
 
-pub fn build_user_handler<U>() -> Router<AppState<U>>
-where
-    U: UserRepository + Clone + 'static,
-{
-    Router::new().route("/{id}", get(get_user::<U>))
+pub fn build_user_handler() -> Router<AppState> {
+    Router::new().route("/{id}", get(get_user))
 }

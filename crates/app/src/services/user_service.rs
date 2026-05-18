@@ -6,18 +6,12 @@ use sqlx::types::Uuid;
 
 use crate::dto::user::UserResponse;
 
-pub struct UserService<U>
-where
-    U: UserRepository,
-{
-    user_repo: Arc<U>,
+pub struct UserService {
+    user_repo: Arc<dyn UserRepository>,
 }
 
-impl<U> UserService<U>
-where
-    U: UserRepository,
-{
-    pub fn new(user_repo: Arc<U>) -> Self {
+impl UserService {
+    pub fn new(user_repo: Arc<dyn UserRepository>) -> Self {
         Self { user_repo }
     }
 

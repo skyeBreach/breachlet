@@ -7,19 +7,13 @@ use crate::{
     state::AppState,
 };
 
-pub async fn build_router<U>(app_state: AppState<U>) -> AppResult<Router>
-where
-    U: UserRepository + Clone + 'static,
-{
+pub async fn build_router(app_state: AppState) -> AppResult<Router> {
     Ok(Router::new()
         .route("/health", get(health))
-        .nest("/api", api_routes::<U>())
+        .nest("/api", api_routes())
         .with_state(app_state))
 }
 
-fn api_routes<U>() -> Router<AppState<U>>
-where
-    U: UserRepository + Clone + 'static,
-{
-    Router::new().nest("/user", build_user_handler::<U>())
+fn api_routes() -> Router<AppState> {
+    Router::new().nest("/user", build_user_handler())
 }
