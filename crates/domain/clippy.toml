@@ -1,0 +1,14 @@
+# ==================================================================================================================== #
+# Clippy - Domain
+#
+# Entities and value objects frequently exceed Clippy's default argument thresholds. 
+# This config relaxes those limits for the domain crate.
+#
+# ==================================================================================================================== #
+# Complexity
+
+# Increase the amount of arguments before issuing a warning. 
+# This is due to entity objects requiring more than the default.
+too-many-arguments-threshold = 15
+
+# ==================================================================================================================== #

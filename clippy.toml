@@ -1,0 +1,15 @@
+# ==================================================================================================================== #
+# Clippy - Workspace
+#
+# Baseline Clippy configuration applied to all workspace members.
+# Crates with their own clippy.toml override or extend these settings.
+#
+# ==================================================================================================================== #
+# Policy
+
+disallowed-macros = [
+    { path = "sqlx::query", reason = "Use type safe alternatives such as query_as and query_scalar." },
+]
+
+# ==================================================================================================================== #
+
