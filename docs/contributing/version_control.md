@@ -4,13 +4,11 @@ section: contributing
 description: Commit message format, branching rules, and VCS conventions
 ---
 
-How commits, branches, and version control are handled in the Breachlet
-project.
+How commits, branches, and version control are handled in the Breachlet project.
 
 ## Commit Messages
 
-All commit messages follow the Conventional Commits specification with
-semantic prefixes.
+All commit messages follow the Conventional Commits specification with semantic prefixes.
 
 ### Format
 
@@ -59,8 +57,7 @@ Optional. Indicates the crate or concern affected.
 
 ### Body
 
-Required when the commit is larger than a simple change. Use bullet points
-to describe what changed and why.
+Required when the commit is larger than a simple change. Use bullet points to describe what changed and why.
 
 ### Footer
 
@@ -104,8 +101,7 @@ BREAKING CHANGE: trait signatures changed to async fn
 
 ## Branching
 
-Work happens on feature branches off `main`. Do not push directly to `main`
-unless explicitly agreed upon.
+Work happens on feature branches off `main`. Do not push directly to `main` unless explicitly agreed upon.
 
 ### Branch Names
 
@@ -117,6 +113,5 @@ Branches should be named descriptively.
 
 ## Atomic Commits
 
-Each commit should do one thing. A commit that mixes a refactor with a
-feature, or a bug fix with a docs update, is not atomic. If a change
-touches multiple concerns, split it into separate commits.
+Each commit should do one thing. A commit that mixes a refactor with a feature, or a bug fix with a docs update,
+is not atomic. If a change touches multiple concerns, split it into separate commits.

@@ -34,8 +34,8 @@ Descriptions should explain:
 
 ### Source
 
-When an issue is created by automation (opencode, CI, scripts), tag it
-`source::robot`. Issues created by a person get `source::human`.
+When an issue is created by automation (opencode, CI, scripts), tag it `source::robot`. Issues created by a person
+get `source::human`.
 
 ## Workflow
 
@@ -44,16 +44,13 @@ Issues follow a simple lifecycle from creation to closure.
 1. Issue is created with appropriate labels
 2. Issue is assigned to the person responsible for the work
 3. Issue receives `status::approved` once reviewed and accepted for work
-4. If blocked by another issue or external dependency, apply
-   `status::blocked` and link the blocking issue
-5. If decided against, apply `status::wontfix` and close the issue with a
-   brief explanation
+4. If blocked by another issue or external dependency, apply `status::blocked` and link the blocking issue
+5. If decided against, apply `status::wontfix` and close the issue with a brief explanation
 6. When work is complete, close the issue
 
 ## Labels
 
-All labels follow the `group::name` format. Group prefixes keep the label
-list scannable and prevent ambiguity.
+All labels follow the `group::name` format. Group prefixes keep the label list scannable and prevent ambiguity.
 
 ### Required Groups
 
