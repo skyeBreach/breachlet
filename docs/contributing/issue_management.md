@@ -42,12 +42,13 @@ When an issue is created by automation (opencode, CI, scripts), tag it
 Issues follow a simple lifecycle from creation to closure.
 
 1. Issue is created with appropriate labels
-2. Issue receives `status::approved` once reviewed and accepted for work
-3. If blocked by another issue or external dependency, apply
+2. Issue is assigned to the person responsible for the work
+3. Issue receives `status::approved` once reviewed and accepted for work
+4. If blocked by another issue or external dependency, apply
    `status::blocked` and link the blocking issue
-4. If decided against, apply `status::wontfix` and close the issue with a
+5. If decided against, apply `status::wontfix` and close the issue with a
    brief explanation
-5. When work is complete, close the issue
+6. When work is complete, close the issue
 
 ## Labels
 

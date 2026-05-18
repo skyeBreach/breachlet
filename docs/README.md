@@ -14,7 +14,8 @@ docs/
 ├── README.md                        # You are here
 ├── definitions.md                   # Domain and architectural definitions
 └── contributing/
-    └── issue_management.md           # Issue creation, workflow, and labels
+    ├── issue_management.md           # Issue creation, workflow, and labels
+    └── version_control.md            # Commit format, branching, and VCS rules
 ```
 
 Each section has its own README that acts as a landing page. Root-level files cover cross-cutting concerns.
