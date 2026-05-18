@@ -86,11 +86,11 @@ CREATE TABLE user_sessions (
     user_id             UUID
                         NOT NULL
                         REFERENCES users(id),
+    -- Session Status
+    status              user_session_status
+                        NOT NULL,
     expire_at           TIMESTAMPTZ
                         NOT NULL,
-
-    -- Session Status
-    status              user_session_status,
     revoked_at          TIMESTAMPTZ,
     last_activity_at    TIMESTAMPTZ,
 
@@ -113,5 +113,7 @@ CREATE INDEX idx_user_sessions_user_id ON user_sessions(user_id);
 CREATE INDEX idx_user_sessions_expire_at ON user_sessions(expire_at);
 CREATE INDEX idx_user_sessions_status ON user_sessions(status);
 CREATE INDEX idx_user_sessions_ip_address ON user_sessions(ip_address);
+
+COMMENT ON TABLE user_sessions IS 'User Sessions';
 
 -- ================================================================================================================== --
