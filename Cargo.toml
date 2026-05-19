@@ -14,7 +14,7 @@ version = "0.1.0"
 authors = ["skyeBreach <skyebenson@hotmail.com>"]
 description = "Stub"
 edition = "2024"
-license-file = "LICENSE"
+license = "Apache-2.0"
 readme = "README.md"
 keywords = ["breachlet"]
 
