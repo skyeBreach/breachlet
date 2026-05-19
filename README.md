@@ -5,6 +5,6 @@ over rigid process enforcement.
 
 ## License
 
-© 2026, [Skye Benson](https://gitlab.com/skyeBreach). All Rights Reserved.
+Distributed under the Apache License, Version 2.0.
 
-See [LICENSE](LICENSE) for more information on the license that this repository uses.
+See [LICENSE](LICENSE) for more information.
