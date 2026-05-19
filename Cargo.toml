@@ -47,6 +47,6 @@ chrono = "0.4.44"
 uuid = "1.23.1"
 
 # Internal Crates
-breachlet-app = { path = "./crates/app" }
-breachlet-core = { path = "./crates/core" }
-breachlet-infra = { path = "./crates/infra" }
+breachlet-app = { path = "./crates/app", version = "0.1.0" }
+breachlet-core = { path = "./crates/core", version = "0.1.0" }
+breachlet-infra = { path = "./crates/infra", version = "0.1.0" }
