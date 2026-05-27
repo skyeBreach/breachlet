@@ -1,23 +1,19 @@
 # ==================================================================================================================== #
-# Package Manager
-
-# Cargo
-**/target
-
+# 
+# 
+#
 # ==================================================================================================================== #
-# Environment Variables and Secrets
+# 
 
-# Environment Variable Files
-.env
-*.env
-*.env.*
-!*.example.env*
-!*.env.example
+variable "name_prefix" {
+  description = "Prefix for all resource names"
+  type        = string
+}
 
-# ==================================================================================================================== #
-# Terraform
-
-.terraform
-*.lock.hcl
+variable "environment" {
+  description = "Deployment environment name, used as a resource prefix"
+  type        = string
+  default     = "staging"
+}
 
 # ==================================================================================================================== #
