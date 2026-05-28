@@ -8,7 +8,6 @@ resource "aws_vpc" "main" {
   enable_dns_hostnames = true
 }
 
-
 # ==================================================================================================================== #
 # Subnets
 
@@ -20,7 +19,7 @@ resource "aws_subnet" "public" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "${var.project_name}-public-${count.index + 1}"
+    Name = "${var.name_prefix}-public-${count.index + 1}"
   }
 }
 
@@ -31,7 +30,7 @@ resource "aws_subnet" "private" {
   cidr_block = cidrsubnet(aws_vpc.main.cidr_block, 4, count.index + 2)
 
   tags = {
-    Name = "${var.project_name}-private-${count.index + 1}"
+    Name = "${var.name_prefix}-private-${count.index + 1}"
   }
 }
 
@@ -41,7 +40,7 @@ resource "aws_subnet" "private" {
 resource "aws_internet_gateway" "main" {
   vpc_id = aws_vpc.main.id
   tags = {
-    Name = "${var.project_name}-igw"
+    Name = "${var.name_prefix}-igw"
   }
 }
 
@@ -52,7 +51,7 @@ resource "aws_eip" "nat" {
   domain = "vpc"
 
   tags = {
-    Name = "${var.project_name}-nat-eip"
+    Name = "${var.name_prefix}-nat-eip"
   }
 }
 
@@ -63,7 +62,7 @@ resource "aws_nat_gateway" "main" {
   depends_on = [aws_internet_gateway.main]
 
   tags = {
-    Name = "${var.project_name}-nat"
+    Name = "${var.name_prefix}-nat"
   }
 }
 
@@ -79,7 +78,7 @@ resource "aws_route_table" "public" {
   }
 
   tags = {
-    Name = "${var.project_name}-public-rt"
+    Name = "${var.name_prefix}-public-rt"
   }
 }
 
@@ -99,7 +98,7 @@ resource "aws_route_table" "private" {
   }
 
   tags = {
-    Name = "${var.project_name}-private-rt"
+    Name = "${var.name_prefix}-private-rt"
   }
 }
 

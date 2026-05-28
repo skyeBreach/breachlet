@@ -4,16 +4,20 @@
 variable "name_prefix" {
   description = "Name of the project"
   type        = string
-  default     = "breachlet"
 }
 
 # ==================================================================================================================== #
-# VPC
+# Network
 
-variable "cidr_block" {
-  description = "CIDR block for the VPC"
+variable "vpc_id" {
+  description = "Identifier for the VPC to attach the security groups."
   type        = string
-  default     = "10.0.0.0/16"
+}
+
+variable "bastion_ssh_cidr" {
+  description = "CIDR blocks allowed SSH access to the bastion"
+  type        = list(string)
+  default     = ["0.0.0.0/0"]
 }
 
 # ==================================================================================================================== #

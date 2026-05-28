@@ -41,6 +41,15 @@ variable "aws_secret_key" {
 }
 
 # ==================================================================================================================== #
+# Security
+
+variable "bastion_ssh_cidr" {
+  description = "CIDR blocks allowed SSH access to the bastion"
+  type        = list(string)
+  default     = ["0.0.0.0/0"]
+}
+
+# ==================================================================================================================== #
 # Metaconfig
 
 variable "tags" {

@@ -18,7 +18,19 @@ module "network" {
   source = "./modules/network"
 
   # Variables
-  cidr_block = "10.0.0.0/16"
+  name_prefix = local.name_prefix
+  cidr_block  = "10.0.0.0/16"
+}
+
+# ==================================================================================================================== #
+# Security
+
+module "security" {
+  source = "./modules/security"
+
+  # Variables
+  name_prefix = local.name_prefix
+  vpc_id      = module.network.vpc_id
 }
 
 # ==================================================================================================================== #
