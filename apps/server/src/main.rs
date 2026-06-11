@@ -1,17 +1,13 @@
 use std::sync::Arc;
 
-use breachlet_app::{
-    router::{self, build_router},
-    services::user_service::UserService,
-    state::AppState,
-};
+use breachlet_app::{router::build_router, services::user_service::UserService, state::AppState};
 use breachlet_core::{config::BackendConfig, error::AppResult, tracing::configure_tracing};
 
 use anyhow::Context;
 
 use breachlet_infra::postgres::user_repo::PgUserRepository;
 use sqlx::postgres::PgPoolOptions;
-use tracing::{info, info_span};
+use tracing::info;
 
 #[tokio::main]
 async fn main() -> AppResult<()> {
@@ -32,7 +28,7 @@ async fn main() -> AppResult<()> {
 
     // Run database migrations on startup
     info!("Starting database migrations...");
-    sqlx::migrate!("../../../migrations").run(&pool).await?;
+    sqlx::migrate!("../../migrations").run(&pool).await?;
     info!("Successfully completed database migrations");
 
     // Initialise all repositories
