@@ -5,6 +5,9 @@ use chrono::{DateTime, Utc};
 use serde::{Deserialize, Serialize};
 use uuid::Uuid;
 
+// ================================================================================================================== //
+// User Authentication Method
+
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserAuthMethod {
     pub id: Uuid,
@@ -34,6 +37,9 @@ impl UserAuthMethod {
         }
     }
 }
+
+// ================================================================================================================== //
+// User Session
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserSession {
@@ -82,3 +88,5 @@ impl UserSession {
         }
     }
 }
+
+// ================================================================================================================== //
