@@ -221,10 +221,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "breachlet-frontend"
-version = "0.1.0"
-
-[[package]]
 name = "breachlet-infra"
 version = "0.1.0"
 dependencies = [
