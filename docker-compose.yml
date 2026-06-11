@@ -36,6 +36,22 @@ services:
     networks:
       - breachlet_network
 
+  breachlet-server:
+    container_name: breachlet-server
+    build:
+      context: .
+      dockerfile: infra/server/Dockerfile
+    env_file:
+      - .env
+    environment:
+      RUST_LOG: "trace"
+    depends_on:
+      - postgres
+    ports:
+      - 3000:3000
+    networks:
+      - breachlet_network
+
 volumes:
   postgresql_data:
     driver: local
