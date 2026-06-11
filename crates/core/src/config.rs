@@ -23,15 +23,17 @@ pub struct BackendConfig {
 impl BackendConfig {
     pub fn load() -> Result<Self, ConfigError> {
         let config = Config::builder()
-            //
-            .add_source(File::with_name("config/default"))
-            //
+            // Development Config
+            .add_source(File::with_name("config/default").required(false))
+            .add_source(File::with_name("config/local").required(false))
+            // Non-Development Root Config
+            .add_source(File::with_name("/etc/breachlet/default").required(false))
+            // Environment
             .add_source(
                 Environment::with_prefix(ENV_PREFIX)
                     .prefix_separator("__")
                     .separator("_"),
             )
-            //
             .add_source(Environment::default().try_parsing(true))
             .build()?;
 
